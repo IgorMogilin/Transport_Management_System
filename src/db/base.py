@@ -40,5 +40,5 @@ class BaseModel(Base, Mixin):
     __abstract__ = True
 
     id: Mapped[str] = mapped_column(
-        UUID(as_uuid=False), primary_key=True, server_default=func.get_random_uuid()
+        UUID(as_uuid=False), primary_key=True, server_default=func.gen_random_uuid()
     )

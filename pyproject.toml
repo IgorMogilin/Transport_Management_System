@@ -48,3 +48,6 @@ ignore_missing_imports = true
 pythonpath = ["src"]
 testpaths = ["tests"]
 asyncio_mode = "auto"
+
+[tool.ruff.lint.per-file-ignores]
+"src/migrations/versions/*.py" = ["UP007"]
