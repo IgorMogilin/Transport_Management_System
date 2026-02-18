@@ -1,19 +1,19 @@
 from typing import TYPE_CHECKING
 
+from common.enums import UserRole
 from sqlalchemy import Enum as SQLEnum
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from src.core.enums import UserRole
-from src.db.base import BaseModel
+from db.models.base import Base, HasId, Mixin
 
 if TYPE_CHECKING:
-    from src.models.vehicle import Vehicle
+    from db.models.vehicle import Vehicle
 
 
-class User(BaseModel):
+class User(Base, HasId, Mixin):
     """
-    Модель пользовтеля.
+    Модель пользователя.
     """
 
     __tablename__ = "user"
@@ -29,4 +29,8 @@ class User(BaseModel):
     name: Mapped[str] = mapped_column(String(70), nullable=False)
     surname: Mapped[str] = mapped_column(String(70), nullable=False)
     phone_number: Mapped[str | None] = mapped_column(String(24), nullable=True)
-    vehicle: Mapped["Vehicle"] = relationship("Vehicle", back_populates="driver")
+    vehicle: Mapped["Vehicle"] = relationship(
+        "Vehicle",
+        back_populates="driver",
+        primaryjoin="User.id == Vehicle.driver_id",
+    )

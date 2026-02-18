@@ -17,9 +17,13 @@ dependencies = [
     "pydantic>=2.5.0",
     "pydantic-settings>=2.1.0",
     "python-dotenv>=1.0.0",
+    "strenum>=0.4.15",
 ]
 
-[project.optional-dependencies]
+[tool.uv]
+default-groups = ["dev"]
+
+[dependency-groups]
 dev = [
     "pre-commit>=3.6.0",
     "ruff>=0.1.0",
@@ -29,9 +33,9 @@ dev = [
 ]
 
 [tool.ruff]
-line-length = 100
+line-length = 120
 target-version = "py311"
-exclude = [".venv", ".git", "alembic/versions"]
+exclude = [".venv", ".git", "migrations/versions"]
 
 [tool.ruff.lint]
 select = ["E", "E501", "F", "I", "B", "UP", "ANN"]
@@ -43,6 +47,10 @@ warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "src.db.*"
+disable_error_code = ["arg-type"]  # Argument "server_default" to "mapped_column" has incompatible type "auto"; expected "FetchedValue | str | TextClause | ColumnElement[Any] | None"  [arg-type]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

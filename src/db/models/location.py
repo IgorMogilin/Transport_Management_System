@@ -1,10 +1,10 @@
 from sqlalchemy import Float, String
 from sqlalchemy.orm import Mapped, mapped_column
 
-from src.db.base import BaseModel
+from db.models.base import Base, HasId, Mixin
 
 
-class Location(BaseModel):
+class Location(Base, HasId, Mixin):
     """
     Модель географической локации.
     """

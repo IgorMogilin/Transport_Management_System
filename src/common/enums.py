@@ -1,4 +1,6 @@
-from enum import StrEnum
+from enum import StrEnum, auto
+
+from strenum import UppercaseStrEnum
 
 
 class UserRole(StrEnum):
@@ -11,14 +13,14 @@ class UserRole(StrEnum):
     DRIVER = "driver"
 
 
-class VehicleStatus(StrEnum):
+class VehicleStatus(UppercaseStrEnum):
     """
     Статусы автомобиля.
     """
 
-    IDLE = "idle"
-    BUSY = "busy"
-    REPAIR = "repair"
+    IDLE = auto()
+    BUSY = auto()
+    REPAIR = auto()
 
 
 class OrderStatus(StrEnum):

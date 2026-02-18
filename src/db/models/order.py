@@ -1,16 +1,16 @@
 from datetime import datetime
 from decimal import Decimal
 
+from common.enums import OrderStatus
 from sqlalchemy import DECIMAL, UUID, ForeignKey
 from sqlalchemy import DateTime as SQLDateTime
 from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import Mapped, mapped_column
 
-from src.core.enums import OrderStatus
-from src.db.base import BaseModel
+from db.models.base import Base, HasId, Mixin
 
 
-class Order(BaseModel):
+class Order(Base, HasId, Mixin):
     """
     Модель заказа.
     """
