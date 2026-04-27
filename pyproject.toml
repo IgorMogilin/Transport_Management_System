@@ -17,6 +17,8 @@ dependencies = [
     "pydantic>=2.5.0",
     "pydantic-settings>=2.1.0",
     "python-dotenv>=1.0.0",
+    "strenum>=0.4.15",
+    "psycopg2-binary>=2.9.11"
 ]
 
 [project.optional-dependencies]
@@ -29,9 +31,9 @@ dev = [
 ]
 
 [tool.ruff]
-line-length = 100
+line-length = 120
 target-version = "py311"
-exclude = [".venv", ".git", "alembic/versions"]
+exclude = [".venv", ".git", "migrations/versions"]
 
 [tool.ruff.lint]
 select = ["E", "E501", "F", "I", "B", "UP", "ANN"]
@@ -48,6 +50,14 @@ ignore_missing_imports = true
 pythonpath = ["src"]
 testpaths = ["tests"]
 asyncio_mode = "auto"
+
+[tool.uv.sources]
+strenum = { git = "https://github.com/irgeek/StrEnum.git" }
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.12",
+]
 
 [tool.ruff.lint.per-file-ignores]
 "src/migrations/versions/*.py" = ["UP007"]
