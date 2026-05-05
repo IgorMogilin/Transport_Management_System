@@ -1,4 +1,4 @@
-from .location import Location
+from .location import Location  # TODO Лучше везде использовать абсолютные импорты
 from .order import Order
 from .user import User
 from .vehicle import Vehicle
