@@ -45,8 +45,8 @@ class Order(Base, HasId, Mixin):
     arrival_date: Mapped[datetime] = mapped_column(SQLDateTime(timezone=True), nullable=False, comment="Дата прибытия")
     status: Mapped[OrderStatus] = mapped_column(
         SQLEnum(OrderStatus, native_enum=False),
-        default=OrderStatus.NEW.value,
-        server_default="new",
+        default=OrderStatus.NEW.value,  # TODO Не обязательно указывать .value
+        server_default="new",  # TODO Одновременное default и server_default обычно избыточно
         nullable=False,
         comment="Статус",
     )

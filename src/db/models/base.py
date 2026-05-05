@@ -27,7 +27,9 @@ class Mixin:
     Общие поля для всех моделей.
     """
 
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )  # TODO nullable не обязательно, если используется | None
     modified_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), onupdate=func.now(), nullable=False)
     created_by: Mapped[str | None] = mapped_column(
         UUID(as_uuid=False), ForeignKey("user.id", ondelete="SET NULL"), nullable=True
@@ -35,7 +37,9 @@ class Mixin:
     modified_by: Mapped[str | None] = mapped_column(
         UUID(as_uuid=False), ForeignKey("user.id", ondelete="SET NULL"), nullable=True
     )
-    is_deleted: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    is_deleted: Mapped[bool] = mapped_column(
+        Boolean, default=False, nullable=False
+    )  # TODO Не обязательно указывать Boolean или что то другое, если оно есть внутри Mapped
 
 
 class HasId:

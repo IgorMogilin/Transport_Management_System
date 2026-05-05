@@ -22,7 +22,7 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
     """Upgrade schema."""
-    sql_file = Path(__file__).parent.parent / "sql" / "generate_uuid__v7.sql"
+    sql_file = Path(__file__).parent.parent / "sql" / "generate_uuid__v7.sql"  #TODO Оверхед делать такие проверки, обычно такие команды вписываются прямо в миграцю, потому что они одноразовые
     if not sql_file.exists():
         raise FileNotFoundError("Не найден код добавления UUID v7")
     with open(sql_file) as file:
